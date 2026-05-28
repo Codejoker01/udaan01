@@ -10,7 +10,7 @@ import Footer from "./common-component/footer/Footer";
 import Logowhite from "./assets/whitelogo.webp"
 import WhatsAppButton from "./common-component/whatsup/WhatsAppButton";
 import { AuthProvider } from "./auth/authContext";
-// import Fraudalert from "./fraud/Fraudalert";
+ 
 import AuthModal from "./auth/AuthModal";
 function App() {
   const navigate = useNavigate();
@@ -76,9 +76,7 @@ function App() {
           <AuthModal />
           <Footer />
         </div > 
-        // <div>
-        //   <Fraudalert/>
-        // </div>
+       
 
       </AuthProvider>
     </>
