@@ -5,7 +5,7 @@ import ContactList from "./ContactList";
 import FranchiseList from "./FranchiseList";
 import UserList from "./UserList";
 import Sidebar from "./Sidebar";
-
+import { API_URL } from "../config.js"
 
 
 const Admin = () => {
@@ -48,7 +48,7 @@ const Admin = () => {
     };
 
     try {
-      const response = await fetch("/api/admin/", {
+      const response = await fetch(`${API_URL}/api/admin/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(credentials),
@@ -72,7 +72,7 @@ const Admin = () => {
     const formData = new FormData(e.target);
     const collegeData = Object.fromEntries(formData.entries());
 
-    await fetch("/api/college/add", {
+    await fetch(`${API_URL}/api/college/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(collegeData),
@@ -84,7 +84,7 @@ const Admin = () => {
   };
 
   const fetchColleges = async () => {
-    const response = await fetch("/api/college/list");
+    const response = await fetch(`${API_URL}/api/college/list`);
     const data = await response.json();
     setColleges(data);
     setFilter(data);
@@ -100,7 +100,7 @@ const Admin = () => {
     const formData = new FormData(e.target);
     const updatedData = Object.fromEntries(formData.entries());
 
-    await fetch(`/api/college/update/${editCollege._id}`, {
+    await fetch(`${API_URL}/api/college/update/${editCollege._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedData),
@@ -116,7 +116,7 @@ const Admin = () => {
     if (!window.confirm("Are you sure you want to delete this college?"))
       return;
 
-    await fetch(`/api/college/delete/${id}`, { method: "DELETE" });
+    await fetch(`${API_URL}/api/college/delete/${id}`, { method: "DELETE" });
 
     alert("College Deleted Successfully!");
     fetchColleges();
@@ -154,7 +154,7 @@ const Admin = () => {
     const formData = new FormData(e.target);
     const blogData = Object.fromEntries(formData.entries());
 
-    await fetch("/api/blog/add", {
+    await fetch(`${API_URL}/api/blog/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(blogData),
@@ -165,7 +165,7 @@ const Admin = () => {
   };
 
   const fetchBlogs = async () => {
-    const response = await fetch("/api/blog/list");
+    const response = await fetch(`${API_URL}/api/blog/list`);
     const data = await response.json();
     setBlogs(data);
   };
@@ -180,7 +180,7 @@ const Admin = () => {
     const formData = new FormData(e.target);
     const updatedData = Object.fromEntries(formData.entries());
 
-    await fetch(`/api/blog/update/${editCollege._id}`, {
+    await fetch(`${API_URL}/api/blog/update/${editCollege._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedData),
@@ -195,7 +195,7 @@ const Admin = () => {
   const handleDeleteBlog = async (id) => {
     if (!window.confirm("Are you sure you want to delete this blog?")) return;
 
-    await fetch(`/api/blog/delete/${id}`, { method: "DELETE" });
+    await fetch(`${API_URL}/api/blog/delete/${id}`, { method: "DELETE" });
 
     fetchBlogs();
   };
