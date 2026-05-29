@@ -8,6 +8,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'; // ✅ Fix added here
 import "./Contact.css";
+import { API_URL } from "../config";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -33,15 +34,14 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    console.log("Submitting to:", `${window.location.origin}/api/franchise`);
-
+   console.log("Submitting to:", `${API_URL}/api/contact`);
     try {
       const payload = { ...formData, course: selectedCourse };
       if (formData.appearedInExam === "no") {
         delete payload.examName;
         delete payload.examPercentage;
       }
-      const response = await axios.post("/api/contact", payload, {
+      const response = await axios.post(`${API_URL}/api/contact`, payload, {
         headers: { "Content-Type": "application/json" },
       });
 
@@ -263,7 +263,7 @@ const Contact = () => {
                   <a
                     href="tel:+917355308287"
                     className="contact-page-item"
-                    style={{ textDecoration: 'none', color: 'inherit' }}
+                    style={{ textDecoration: 'none'}}
                   >
                     <div className="contact-page-icon">
                       <FaPhone />
@@ -285,7 +285,7 @@ const Contact = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="contact-page-value"
-                        style={{ color: 'inherit', textDecoration: 'none' }}
+                        style={{  textDecoration: 'none' }}
                       >
                         info@udaan360.com
                       </a>
@@ -306,7 +306,7 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="contact-page-item"
-                    style={{ textDecoration: 'none', color: 'inherit' }}
+                    style={{ textDecoration: 'none'  }}
                   >
                     <div className="contact-page-icon">
                       <FaWhatsapp />
